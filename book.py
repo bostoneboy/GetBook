@@ -86,14 +86,6 @@ def page_chapter_format(page_chapter):
 # main program begin.#
 ######################
 def book(url_main):
-  try:
-      global page_cache_main
-      page_cache_main = urllib.urlopen(url_main)
-  except:
-      print "Cannot open URL"
-      sys.exit()  
-  page_main = page_cache_main.read()
-  
   if re.search(r"http:\/\/book\.qq\.com",url_main):
     website_type = "qqbook"
     keyword_filename = re.compile(r"<h1>.*£º(.*)<\/h1>")
@@ -146,10 +138,19 @@ def book(url_main):
     keyword_url = re.compile(r"<a\sid=\"CategoryEntryList1_EntryStoryList_Results__ctl\d+_Hyperlink3\"\shref=\"(http:\/\/blog\.chinatimes\.com\/[\w\/_-]+\.html)\".*?>(.*?)<\/a>")
     keyword_chapter = re.compile(r"<div\sid=\"article_content\">([\s\S]*?)<\/div>\s+<\/div>")
 
+  try:
+      global page_cache_main
+      page_cache_main = urllib.urlopen(url_main)
+  except:
+      print "Cannot open URL"
+      sys.exit()
+
+  page_main = page_cache_main.read()
   out_filename = resolve_out_filename(page_main,keyword_filename)
   print out_filename,
   out_file = open(out_filename,"a")
   url_sub = resolve_url_sub_page_chapter(url_main,page_main,website_type,keyword_url,keyword_url_base)
+  
   for m in range(len(url_sub)):
     page_cache_sub = urllib.urlopen(url_sub[m])
     percent = (m + 1.0)/len(url_sub) * 100
@@ -171,6 +172,7 @@ def book(url_main):
     # convert the content from $source_charset to utf-8
     page_chapter = conv_to_utf8(page_chapter)
     out_file.write(page_chapter)
+    
   out_file.close()
   print ""
   # print "Write file success."
