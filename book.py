@@ -183,4 +183,5 @@ def book(url_main):
   content_write200()
 
 if __name__ == "__main__":
-  book("http://data.book.163.com/book/home/009200200005/0000KXeK.html")
+  url_main = raw_input("URL: ")
+  book(url_main=url_main)
