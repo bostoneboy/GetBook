@@ -11,20 +11,15 @@ def resolve_out_filename(page_main,url_main):
   global out_filename
   global source_charset
   keyword_charset = re.compile(r"charset=([\w-]+)",re.IGNORECASE)
-  source_charset = keyword_charset.search(string).group(1)
-  out_filename = keyword_filename.search(page_main).group(1) + ".txt"
-  # convert the filename to unicode
-  out_filename = (out_filename).decode(source_charset)
-  # out_filename = "pixnetblog4.txt"
-  #if website_type == "pixnetblog" or website_type == "chinatimesblog":
-  #  out_filename = out_filename.decode('utf-8')
+  source_charset = keyword_charset.search(page_main).group(1)
+  out_filename = keyword_filename.search(page_main).group(1)
   # for debug
-  # print "out_filename",out_filename
+  # print out_filename,source_charset
+  # convert the filename to unicode
+  out_filename = (out_filename).decode(source_charset) + ".txt"
  
 def conv_to_utf8(content):
-  # source_charset = "gb2312"
   # dest_charset = "utf-8"
-  # if source_charset == "gb2312":
   if source_charset not in ("utf-8","UTF-8"):
     return (content).decode(source_charset,"ignore").encode("utf-8")
   else:
