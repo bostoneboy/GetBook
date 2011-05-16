@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: cp936 -*-
 # Author: Bill JaJa
-# Project page: http://pagebrin.com
+# Homepage: http://pagebrin.com
 
 import re
 import sys
