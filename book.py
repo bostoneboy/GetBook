@@ -1,6 +1,6 @@
 #!/usr/bin/python
-# python 2.x
 # -*- coding: cp936 -*-
+# python 2.x
 # Author: Bill JaJa
 # Project Home: http://github.com/bostoneboy/GetBook
 
