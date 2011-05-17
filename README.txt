@@ -14,7 +14,7 @@ Python 2.6
 2. 执行python book.py
 3. 在接下来打印的URL:后面粘上你要下载书籍的网址。如：http://book.qq.com/xxxx/xxx/index.shtml
 二. Linux/Mac用户
-1. 切换至book.py所在目录
+1. 打开终端，切换至book.py所在目录
 2. 给程序赋予可执行权限 chmod +x book.py
 3. 执行程序 ./book.py
 4. 在接下来打印的RUL:后面粘上你要下载书籍的网址。如：http://book.qq.com/xxxx/xxx/index.shtml
