@@ -184,4 +184,7 @@ def book(url_main):
 
 if __name__ == "__main__":
   url_main = raw_input("URL: ")
+  url_suffix = re.search(r"(http:.*\.s?html)\?\w+",url_main)
+  if url_suffix:
+    url_main = url_suffix.group(1)
   book(url_main)
