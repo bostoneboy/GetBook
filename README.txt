@@ -1,4 +1,4 @@
-主程序：book.py
+﻿主程序：book.py
 
 此程序用来将几大门户网站读书频道的书籍扒下来保存为单独的txt文档。
 以书名作为txt的文件名，文档正文以UTF-8编码保存。
@@ -12,12 +12,12 @@ Python 2.6
 确定已经安装Python 2.6。
 1. 打开CMD窗口，切换至book.py的存放目录。
 2. 执行python book.py
-3. 在接下来打印的URL:后面粘上你要下载书籍的网址。如：http://book.qq.com/xxxx/xxx/index.shtml
+3. 在接下来在打印的URL:后面粘上你要下载书籍的网址。如：http://book.qq.com/xxxx/xxx/index.shtml
 二. Linux/Mac用户
 1. 打开终端，切换至book.py所在目录
 2. 给程序赋予可执行权限 chmod +x book.py
 3. 执行程序 ./book.py
-4. 在接下来打印的RUL:后面粘上你要下载书籍的网址。如：http://book.qq.com/xxxx/xxx/index.shtml
+4. 在接下来在打印的URL:后面粘上你要下载书籍的网址。如：http://book.qq.com/xxxx/xxx/index.shtml
 
 
 目前支持的网站有：
