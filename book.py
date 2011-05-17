@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# python 2.x
 # -*- coding: cp936 -*-
 # Author: Bill JaJa
 # Project Home: http://github.com/bostoneboy/GetBook
@@ -93,7 +94,7 @@ def page_chapter_format(page_chapter):
 def book(url_main):
   if re.search(r"http:\/\/book\.qq\.com",url_main):
     website_type = "qqbook"
-    keyword_filename = re.compile(r"<h1>.*£º(.*)<\/h1>")
+    keyword_filename = re.compile(r"<h1>.*ï¿½ï¿½(.*)<\/h1>")
     # no keyword_url_base
     keyword_url_base = ""
     keyword_url = re.compile(r"javascript:opennew\(\'(http\S*shtml).*>(.*)<\/a>")
