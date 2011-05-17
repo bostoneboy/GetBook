@@ -19,11 +19,11 @@ def conv_to_utf8(content):
 
 def conv_filename(filename):
   # filename use unicode if host is windows.
-  # filename use utf-8 if host is linux.
+  # filename use utf-8 if host is linux or mac osx.
   os_type = platform.system() 
   if os_type == "Windows":
     filename = (filename).decode(source_charset) + ".txt"
-  elif os_type == "Linux":
+  elif os_type in ("Linux","macosx"):
     filename = conv_to_utf8(filename) + ".txt"
   else:
     filename = "Error_OS_type.txt"
