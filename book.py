@@ -33,8 +33,9 @@ def resolve_out_filename(page_main,keyword):
   global source_charset
   keyword_charset = re.compile(r"charset=([\w-]+)",re.IGNORECASE)
   source_charset = keyword_charset.search(page_main).group(1)
-  if keyword.search(page_main).group(1):
-    filename = keyword.search(page_main).group(1)
+  filename = keyword.search(page_main)
+  if filename:
+    filename = filename.group(1)
   else:
     basestring = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     filename = "sample-" + "".join(random.sample(basestring,5))
@@ -94,14 +95,15 @@ def page_chapter_format(page_chapter):
 def book(url_main):
   if re.search(r"http:\/\/book\.qq\.com",url_main):
     website_type = "qqbook"
-    keyword_filename = re.compile(r"<h1>.*£º(.*)<\/h1>")
+    # keyword_filename = re.compile(r"<h1>.*£º(.*)<\/h1>")
+    keyword_filename = re.compile(r"<title>(.*?)_.*<\/title>")
     # no keyword_url_base
     keyword_url_base = ""
     keyword_url = re.compile(r"javascript:opennew\(\'(http\S*shtml).*>(.*)<\/a>")
     keyword_chapter = re.compile(r"<div\sid=\"content\".*>([\s\S]*?)<\/div>")
   elif re.search(r"http:\/\/bookapp\.book\.qq\.com",url_main):
     website_type = "qqbookorigin"
-    keyword_filename = re.compile(r"<title>(.*)_.*<\/title>")
+    keyword_filename = re.compile(r"<title>(.*?)_.*<\/title>")
     keyword_url_base = re.compile(r"(http:\/\/[\.\w]+\/origin\/workintro\/\d+\/)\S+\.shtml")
     keyword_url = re.compile(r"<span\sid=\"cpc_\d+\"><\/span>(.*)<a\shref=\S+workid=(\d+)&chapterid=(\d+).*>(.*)<\/a>")
     keyword_chapter = re.compile(r"<div\sid=\"content\".*>([\s\S]*?)<\/div>")
