@@ -5,6 +5,7 @@
 
 import re
 import sys
+import random
 import urllib
 import platform
  
@@ -31,7 +32,11 @@ def resolve_out_filename(page_main,keyword):
   global source_charset
   keyword_charset = re.compile(r"charset=([\w-]+)",re.IGNORECASE)
   source_charset = keyword_charset.search(page_main).group(1)
-  filename = keyword.search(page_main).group(1)
+  if keyword.search(page_main).group(1):
+    filename = keyword.search(page_main).group(1)
+  else:
+    basestring = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    filename = "sample-" + "".join(random.sample(basestring,5))
   filename = conv_filename(filename)
   # for debug
   # print out_filename,source_charset
