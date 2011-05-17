@@ -23,7 +23,7 @@ def conv_filename(filename):
   os_type = platform.system() 
   if os_type == "Windows":
     filename = (filename).decode(source_charset) + ".txt"
-  elif os_type in ("Linux","macosx"):
+  elif os_type in ("Linux","Darwin"):
     filename = conv_to_utf8(filename) + ".txt"
   else:
     filename = "Error_OS_type.txt"
