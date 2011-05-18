@@ -17,6 +17,10 @@ def conv_to_utf8(content):
   else:
     return content
 
+def random_char(number_of_chars):
+  basestring = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  return "".join(random.sample(basestring,number_of_chars))
+
 def conv_filename(filename):
   # filename use unicode if host is windows.
   # filename use utf-8 if host is linux or mac osx.
@@ -26,7 +30,7 @@ def conv_filename(filename):
   elif os_type in ("Linux","Darwin"):
     filename = conv_to_utf8(filename) + ".txt"
   else:
-    filename = "Error_OS_type.txt"
+    filename = "ErrorOsType-" + random_char(5) + ".txt"
   return filename
 
 def resolve_out_filename(page_main,keyword):
@@ -37,8 +41,7 @@ def resolve_out_filename(page_main,keyword):
   if filename:
     filename = filename.group(1)
   else:
-    basestring = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    filename = "sample-" + "".join(random.sample(basestring,5))
+    filename = "sample-" + random_char(5)
   filename = conv_filename(filename)
   # for debug
   # print out_filename,source_charset
