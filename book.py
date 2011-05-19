@@ -25,10 +25,11 @@ def random_char(number_of_chars):
 def conv_filename(filename):
   # filename use unicode if host is windows.
   # filename use utf-8 if host is linux or mac osx.
+  if source_charset in ("gb2312","GB2312"):
+    source_charset2 = "gbk"
   os_type = platform.system() 
   if os_type == "Windows":
-    filename = filename + ".txt"
-    # filename = (filename).decode(source_charset,"ignore") + ".txt"
+    filename = (filename).decode(source_charset2,"ignore") + ".txt"
   elif os_type in ("Linux","Darwin"):
     filename = conv_to_utf8(filename) + ".txt"
   else:
