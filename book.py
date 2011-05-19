@@ -5,6 +5,7 @@
 # Project Home: http://github.com/bostoneboy/GetBook
 
 import re
+import os
 import sys
 import random
 import urllib
@@ -26,7 +27,8 @@ def conv_filename(filename):
   # filename use utf-8 if host is linux or mac osx.
   os_type = platform.system() 
   if os_type == "Windows":
-    filename = (filename).decode(source_charset) + ".txt"
+    filename = filename + ".txt"
+    # filename = (filename).decode(source_charset,"ignore") + ".txt"
   elif os_type in ("Linux","Darwin"):
     filename = conv_to_utf8(filename) + ".txt"
   else:
@@ -66,13 +68,15 @@ def resolve_url_sub_page_chapter(url_main,page_main,website_type,keyword_url,key
   if website_type in ("pixnetblog","chinatimesblog"):
     url_sub.reverse()
     page_chapter_title.reverse()
-  return url_sub
   # for debug
   # print "url_sub",url_sub
   # print "page_chapter_title",page_chapter_title
+  return url_sub
   
 def page_sub_to_chapter(page_sub,keyword_chapter):
   page_chapter = keyword_chapter.search(page_sub).group(1)
+  # for debug
+  # print page_chapter
   return page_chapter
 
 def page_chapter_format(page_chapter):
@@ -87,9 +91,9 @@ def page_chapter_format(page_chapter):
   #page_chapter = keyword_substi_4.sub("    ",page_chapter)
   page_chapter = keyword_substi_5.sub("\n\n",page_chapter)
   page_chapter = page_chapter + "\n\n"
-  return page_chapter
   # for debug
   # print page_chapter
+  return page_chapter
 
 
 ######################   
@@ -102,7 +106,7 @@ def book(url_main):
     keyword_filename = re.compile(r"<title>(.*?)_.*<\/title>")
     # no keyword_url_base
     keyword_url_base = ""
-    keyword_url = re.compile(r"javascript:opennew\(\'(http\S*shtml).*>(.*)<\/a>")
+    keyword_url = re.compile(r"javascript:opennew\(\'(http\S*shtml).*?>([\s\S]*?)<\/a>")
     keyword_chapter = re.compile(r"<div\sid=\"content\".*>([\s\S]*?)<\/div>")
   elif re.search(r"http:\/\/bookapp\.book\.qq\.com",url_main):
     website_type = "qqbookorigin"
@@ -176,17 +180,20 @@ def book(url_main):
     # get chapter content from sub page
     page_chapter = page_sub_to_chapter(page_sub,keyword_chapter)
     # format the text
-    page_chapter = page_chapter_format(page_chapter) 
+    page_chapter = page_chapter_format(page_chapter)
     if m == len(url_sub) - 1:
       keyword_substi_6 = re.compile(r"\s+$")
       page_chapter = keyword_substi_6.sub("",page_chapter)
     # convert the content from $source_charset to utf-8
     page_chapter = conv_to_utf8(page_chapter)
     out_file.write(page_chapter)
-    
+  whole_file = open(out_filename,"r").read()
   out_file.close()
-  print ""
-  # print "Write file success."
+  if re.search(r"^\s*$",whole_file):
+    print "\b\b\b\b\b\b\b\b\b\bThere is no content to match, REJECT!"
+    os.remove(out_filename)
+  else:
+    print ""
 
 if __name__ == "__main__":
   url_main = raw_input("URL: ")
