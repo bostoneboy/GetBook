@@ -27,6 +27,8 @@ def conv_filename(filename):
   # filename use utf-8 if host is linux or mac osx.
   if source_charset in ("gb2312","GB2312"):
     source_charset2 = "gbk"
+  else:
+    source_charset2 = source_charset
   os_type = platform.system() 
   if os_type == "Windows":
     filename = (filename).decode(source_charset2,"ignore") + ".txt"
