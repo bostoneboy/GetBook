@@ -77,7 +77,12 @@ def resolve_url_sub_page_chapter(url_main,page_main,website_type,keyword_url,key
   return url_sub
   
 def page_sub_to_chapter(page_sub,keyword_chapter):
-  page_chapter = keyword_chapter.search(page_sub).group(1)
+  # page_chapter = keyword_chapter.search(page_sub).group(1)
+  result = keyword_chapter.search(page_sub)
+  if result:
+    page_chapter = result.group(1)
+  else:
+    page_chapter = keyword_chapter2.search(page_sub).group(1)
   # for debug
   # print page_chapter
   return page_chapter
@@ -125,19 +130,20 @@ def book(url_main):
     keyword_chapter = re.compile(r"<div\sid=\"contTxt\"\sclass=\"contTxt1\">(.*)<\/div>")
   elif re.search(r"book\.163\.com",url_main):
     website_type = "neteastbook"
-    keyword_filename = re.compile(r"\"&shortname=(\S*)\"")
+    keyword_filename = re.compile(r"\"&shortname=(.*?)\"")
     keyword_url_base = re.compile(r"([\S]+\.book\.163\.com)")
     keyword_url = re.compile(r"<li>\s*<a\s*href=\"(\/book/section\/\w+\/\w+\.html)\">(.*)<\/a>\s*<\/li>")
     keyword_chapter = re.compile(r"<div\sclass=\"bk-article-body\"\sid=\"bk-article-body\">([\s\S]*?)<\/div>")
-  elif re.search(r"lz\.book\.sohu\.com",url_main):
+    #keyword_chapter2 = re.compile(r"class=\"aContent\">([\s\S]*?)<p\sclass=\"aPages\">")
+  elif re.search(r"lz\.book\.\.m",url_main):
     website_type = "sohubook"
-    keyword_filename = re.compile(r"var\s*bookname=\"(\S*)\"")
+    keyword_filename = re.compile(r"var\s*bookname=\"(.*?)\"")
     keyword_url_base = re.compile(r"([\S]+lz\.book\.sohu\.com\/)")
     keyword_url = re.compile(r"<li>\s*<a\starget=\"_blank\"\shref=\"(chapter-\d+-\d+.html)\">(.*)<\/a>\s*<\/li>")
     keyword_chapter = re.compile(r"<div\sclass=\"txtC\"\sid=\"txtBg\">[\s\S]*?<p>([\s\S]*?)<\/div>")
   elif re.search(r"vip\.book\.sohu\.com",url_main):
     website_type = "sohubookvip"
-    keyword_filename = re.compile(r"<div\sclass=\"booklist_tit\">(\S*)<\/div>")
+    keyword_filename = re.compile(r"<div\sclass=\"booklist_tit\">(.*?)<\/div>")
     keyword_url_base = re.compile(r"([\S]+vip\.book\.sohu\.com\/)")
     keyword_url = re.compile(r"<li\s*><span\sclass=\"brown\"><\/span><a\shref=\"(\/content/\d+/\d+\/)\"[\s\S]*?>([\s\S]*?)<\/a>\s*<\/li>")
     keyword_chapter = re.compile(r"<div\sclass=\"artical_tit\">[\s\S]*?<\/table>\s*<p>([\s\S]*?)<\s*\/div>")
@@ -150,7 +156,7 @@ def book(url_main):
     keyword_chapter = re.compile(r"<div\sclass=\"article-content\">([\s\S]*?)<\s*\/div>")
   elif re.search(r"\S+blog\.chinatimes\.com",url_main):
     website_type = "chinatimesblog"
-    keyword_filename = re.compile(r"<SPAN\sclass=\"highlight\">\s*(\S+)<\/SPAN>")
+    keyword_filename = re.compile(r"<SPAN\sclass=\"highlight\">\s*(.*?)<\/SPAN>")
     # no keyword_url_base
     keyword_url_base = ""
     keyword_url = re.compile(r"<a\sid=\"CategoryEntryList1_EntryStoryList_Results__ctl\d+_Hyperlink3\"\shref=\"(http:\/\/blog\.chinatimes\.com\/[\w\/_-]+\.html)\".*?>(.*?)<\/a>")
