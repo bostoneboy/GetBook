@@ -12,12 +12,12 @@ Python 2.6
 确定已经安装Python 2.6。
 1. 打开CMD窗口，切换至book.py的存放目录。
 2. 执行python book.py
-3. 在接下来在打印的URL:后面粘上你要下载书籍的网址。如： http://book.qq.com/xxxx/xxx/index.shtml
+3. 在接下来打印的URL:后面粘上你要下载书籍的网址。如： http://book.qq.com/xxxx/xxx/index.shtml
 二. Linux/Mac用户
 1. 打开终端，切换至book.py所在目录
 2. 给程序赋予可执行权限 chmod +x book.py
 3. 执行程序 ./book.py
-4. 在接下来在打印的URL:后面粘上你要下载书籍的网址。如： http://book.qq.com/xxxx/xxx/index.shtml
+4. 在接下来打印的URL:后面粘上你要下载书籍的网址。如： http://book.qq.com/xxxx/xxx/index.shtml
 
 
 目前支持的网站有：
@@ -32,5 +32,7 @@ Python 2.6
 附例：
 sample_Irish_caffee.txt 是使用本程序扒取下来的一个范本，《愛爾蘭咖啡》by 痞子蔡
 文章地址： http://jht.pixnet.net/blog/category/632799
+
+Project Home: http://pagebrin.com/project/getbook
 
 ====待完成====
