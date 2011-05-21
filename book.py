@@ -2,7 +2,8 @@
 # -*- coding: cp936 -*-
 # python 2.x
 # Author: Bill JaJa
-# Project Home: http://github.com/bostoneboy/GetBook
+# Project Home: http://pagebrin.com/project/getbook/
+# Github  Page: http://github.com/bostoneboy/GetBook
 
 import re
 import os
@@ -110,7 +111,7 @@ def page_chapter_format(page_chapter):
 def book(url_main):
   if re.search(r"http:\/\/book\.qq\.com",url_main):
     website_type = "qqbook"
-    # keyword_filename = re.compile(r"<h1>.*：(.*)<\/h1>")
+    # keyword_filename = re.compile(r"<h1>.*锟斤拷(.*)<\/h1>")
     keyword_filename = re.compile(r"<title>(.*?)_.*<\/title>")
     # no keyword_url_base
     keyword_url_base = ""
