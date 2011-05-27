@@ -2,7 +2,7 @@
 # -*- coding: cp936 -*-
 # python 2.x
 # Author: Bill JaJa
-# Project Home: http://pagebrin.com/project/getbook/
+# Project Home: http://pagebrin.com/projects/getbook/
 # Github  Page: http://github.com/bostoneboy/GetBook
 
 import re

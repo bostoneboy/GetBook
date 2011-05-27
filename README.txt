@@ -33,6 +33,6 @@ Python 2.6
 sample_Irish_caffee.txt 是使用本程序扒取下来的一个范本，《愛爾蘭咖啡》by 痞子蔡
 文章地址： http://jht.pixnet.net/blog/category/632799
 
-Project Home: http://pagebrin.com/project/getbook
+Project Home: http://pagebrin.com/projects/getbook
 
 ====待完成====
